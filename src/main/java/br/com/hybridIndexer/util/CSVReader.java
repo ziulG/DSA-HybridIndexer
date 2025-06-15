@@ -14,14 +14,52 @@ public class CSVReader {
     
     /**
      * Lê um arquivo CSV e retorna uma lista de transações
+     * Tenta primeiro ler do classpath, depois do sistema de arquivos
      * @param filePath Caminho do arquivo CSV
      * @return Lista de transações lidas do arquivo
      * @throws IOException Se houver erro na leitura do arquivo
      */
     public static List<Transaction> readTransactions(String filePath) throws IOException {
         List<Transaction> transactions = new ArrayList<>();
+        BufferedReader br = null;
         
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        try {
+            // Primeiro, tenta ler do classpath (para recursos internos)
+            InputStream inputStream = CSVReader.class.getClassLoader().getResourceAsStream(filePath);
+            if (inputStream == null) {
+                // Se não encontrou no classpath, tenta como arquivo do sistema
+                // Primeiro tenta o caminho direto
+                File file = new File(filePath);
+                if (!file.exists()) {
+                    // Se não existe, tenta alguns caminhos alternativos comuns
+                    String[] possiblePaths = {
+                        "src/main/resources/" + filePath,
+                        "target/classes/" + filePath,
+                        filePath.replace("resources/", "target/classes/"),
+                        filePath.replace("resources\\", "target\\classes\\")
+                    };
+                    
+                    boolean found = false;
+                    for (String path : possiblePaths) {
+                        file = new File(path);
+                        if (file.exists()) {
+                            filePath = path;
+                            found = true;
+                            break;
+                        }
+                    }
+                    
+                    if (!found) {
+                        throw new FileNotFoundException("Arquivo não encontrado: " + filePath + 
+                            "\nCaminhos tentados: " + String.join(", ", possiblePaths));
+                    }
+                }
+                br = new BufferedReader(new FileReader(file));
+            } else {
+                // Lê do classpath
+                br = new BufferedReader(new InputStreamReader(inputStream));
+            }
+            
             String line;
             boolean firstLine = true;
             
@@ -41,6 +79,10 @@ public class CSVReader {
                 if (transaction != null) {
                     transactions.add(transaction);
                 }
+            }
+        } finally {
+            if (br != null) {
+                br.close();
             }
         }
         

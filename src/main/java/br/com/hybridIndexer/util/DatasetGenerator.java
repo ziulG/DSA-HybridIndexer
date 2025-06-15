@@ -35,7 +35,10 @@ public class DatasetGenerator {
     public static void generateDataset(String filename, int numberOfTransactions) throws IOException {
         System.out.println("Gerando dataset com " + numberOfTransactions + " transações...");
         
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+        // Garantir que o arquivo seja salvo na pasta resources
+        String resourcesPath = "src/main/resources/" + filename;
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(resourcesPath))) {
             // Escrever cabeçalho
             writer.write("id,valor,origem,destino,timestamp");
             writer.newLine();
@@ -52,7 +55,7 @@ public class DatasetGenerator {
             }
         }
         
-        System.out.println("✓ Dataset gerado com sucesso: " + filename);
+        System.out.println("✓ Dataset gerado com sucesso: " + resourcesPath);
     }
     
     /**
@@ -75,7 +78,10 @@ public class DatasetGenerator {
             limitedOrigens[i] = ORIGENS[i % ORIGENS.length];
         }
         
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+        // Garantir que o arquivo seja salvo na pasta resources
+        String resourcesPath = "src/main/resources/" + filename;
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(resourcesPath))) {
             // Escrever cabeçalho
             writer.write("id,valor,origem,destino,timestamp");
             writer.newLine();
@@ -91,7 +97,7 @@ public class DatasetGenerator {
             }
         }
         
-        System.out.println("✓ Dataset com colisões gerado: " + filename);
+        System.out.println("✓ Dataset com colisões gerado: " + resourcesPath);
     }
     
     /**

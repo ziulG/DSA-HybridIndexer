@@ -21,6 +21,10 @@ Este projeto implementa um indexador híbrido que utiliza uma única Tabela Hash
 
 ```
 DSA-HybridIndexer/
+├── scripts/
+│   ├── compile.sh                                     # Script de compilação
+│   ├── run.sh                                         # Script de execução
+│   └── generate-datasets.sh                           # Script para gerar datasets
 ├── src/
 │   └── main/
 │       └── java/
@@ -72,11 +76,19 @@ java -jar target/hybrid-indexer-1.0.0.jar
 
 1. **Compilar todos os arquivos:**
 ```bash
+# Usando o script de compilação
+./scripts/compile.sh
+
+# Ou manualmente
 javac -d out src/main/java/br/com/hybridIndexer/**/*.java
 ```
 
 2. **Executar o programa:**
 ```bash
+# Usando o script de execução
+./scripts/run.sh
+
+# Ou manualmente
 java -cp out main.java.br.com.hybridIndexer.Main
 ```
 
@@ -85,6 +97,9 @@ java -cp out main.java.br.com.hybridIndexer.Main
 O projeto inclui um gerador de datasets. Para criar arquivos de teste:
 
 ```bash
+# Usando o script de geração
+./scripts/generate-datasets.sh
+
 # Usando Maven
 mvn exec:java -Dexec.mainClass="main.java.br.com.hybridIndexer.util.DatasetGenerator"
 
@@ -168,8 +183,8 @@ java -Xmx2g -jar target/hybrid-indexer-1.0.0.jar
 
 ## 👥 Autor
 
+- Luiz Gustavo Bruzaca Cutrim
+
 Desenvolvido para a disciplina de Estrutura de Dados II - UFMA
 
 ---
-
-**Nota**: Este é um projeto educacional. Para uso em produção, considere adicionar tratamento de erros mais robusto, testes unitários e otimizações adicionais.
