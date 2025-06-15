@@ -1,4 +1,4 @@
-package main.java.br.com.hybridIndexer.datastructures;
+package br.com.hybridIndexer.datastructures;
 
 /**
  * Classe que representa um nó de uma Árvore Rubro-Negra

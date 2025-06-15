@@ -1,4 +1,4 @@
-package main.java.br.com.hybridIndexer.model;
+package br.com.hybridIndexer.model;
 
 import java.util.Objects;
 

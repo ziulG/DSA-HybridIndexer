@@ -1,4 +1,4 @@
-package main.java.br.com.hybridIndexer.util;
+package br.com.hybridIndexer.util;
 
 public class HashLinearTrial<Key, Value>{
     private int N; // numero de pares de chaves na tabela

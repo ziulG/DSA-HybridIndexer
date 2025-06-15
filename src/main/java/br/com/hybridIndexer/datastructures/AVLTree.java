@@ -1,4 +1,4 @@
-package main.java.br.com.hybridIndexer.datastructures;
+package br.com.hybridIndexer.datastructures;
 
 /**
  * Implementação de uma Árvore AVL (Adelson-Velsky e Landis)
