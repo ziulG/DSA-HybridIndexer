@@ -6,12 +6,12 @@ public class HashLinearTrial<Key, Value>{
     private Key[] keys; // the keys
     private Value[] vals; // the values
 
-    public void HashTentativaLinear() {
+    public HashLinearTrial() {
         keys = (Key[]) new Object[M];
         vals = (Value[]) new Object[M];
     }
 
-    public void HashTentativaLinear(int cap) {
+    public HashLinearTrial(int cap) {
         keys = (Key[]) new Object[cap];
         vals = (Value[]) new Object[cap];
         M = cap;
@@ -24,6 +24,7 @@ public class HashLinearTrial<Key, Value>{
      */
     private int hash(Key key){
         // Implementar a função de Hash aqui.
+        return (key.hashCode() & 0x7fffffff) % M;
     }
 
     /**
@@ -32,8 +33,8 @@ public class HashLinearTrial<Key, Value>{
      */
     private void resize(int cap) {
 
-        HashTentativaLinear<Key, Value> t;
-        t = new HashTentativaLinear<Key, Value> (cap);
+        HashLinearTrial<Key, Value> t;
+        t = new HashLinearTrial<Key, Value>(cap);
 
         for (int i = 0; i < keys.length; i++)
             if (keys[i] != null)
@@ -59,6 +60,30 @@ public class HashLinearTrial<Key, Value>{
      */
     public void put(Key key, Value val) {
         // Implementar
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
+        if (val == null) {
+            delete(key);
+            return;
+        }
+
+        // Redimensionar se a tabela estiver mais de 50% cheia
+        if (N >= M/2) {
+            resize(2*M);
+        }
+
+        int i;
+        for (i = hash(key); keys[i] != null; i = (i + 1) % M) {
+            if (keys[i].equals(key)) {
+                vals[i] = val;
+                return;
+            }
+        }
+        keys[i] = key;
+        vals[i] = val;
+        N++;
     }
 
     /**
@@ -102,5 +127,15 @@ public class HashLinearTrial<Key, Value>{
      */
     public Value get(Key key) {
         // Implementar
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
+        for (int i = hash(key); keys[i] != null; i = (i + 1) % M) {
+            if (keys[i].equals(key)) {
+                return vals[i];
+            }
+        }
+        return null;
     }
 }
