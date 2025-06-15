@@ -16,7 +16,7 @@ public class AVLTree<T extends Comparable<T>> implements BalancedTree<T> {
         this.root = null;
         this.size = 0;
     }
-    
+    // oi
     @Override
     public void insert(T value) {
         if (value == null) {
