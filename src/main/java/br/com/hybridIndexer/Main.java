@@ -1,8 +1,8 @@
-package main.java.br.com.hybridIndexer;
+package br.com.hybridIndexer;
 
-import main.java.br.com.hybridIndexer.datastructures.HybridHashTable;
-import main.java.br.com.hybridIndexer.model.Transaction;
-import main.java.br.com.hybridIndexer.util.CSVReader;
+import br.com.hybridIndexer.datastructures.HybridHashTable;
+import br.com.hybridIndexer.model.Transaction;
+import br.com.hybridIndexer.util.CSVReader;
 
 import java.io.IOException;
 import java.util.List;

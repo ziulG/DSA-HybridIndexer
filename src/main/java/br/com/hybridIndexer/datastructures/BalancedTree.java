@@ -1,4 +1,4 @@
-package main.java.br.com.hybridIndexer.datastructures;
+package br.com.hybridIndexer.datastructures;
 
 /**
  * Interface genérica para árvores balanceadas (AVL e Rubro-Negra)

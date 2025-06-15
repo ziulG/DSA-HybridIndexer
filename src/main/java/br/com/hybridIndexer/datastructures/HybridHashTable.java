@@ -1,6 +1,6 @@
-package main.java.br.com.hybridIndexer.datastructures;
+package br.com.hybridIndexer.datastructures;
 
-import main.java.br.com.hybridIndexer.model.Transaction;
+import br.com.hybridIndexer.model.Transaction;
 import java.util.*;
 
 /**

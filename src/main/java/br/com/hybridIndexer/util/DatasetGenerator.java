@@ -1,6 +1,6 @@
-package main.java.br.com.hybridIndexer.util;
+package br.com.hybridIndexer.util;
 
-import main.java.br.com.hybridIndexer.model.Transaction;
+import br.com.hybridIndexer.model.Transaction;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
